@@ -32,7 +32,8 @@ final class Service: Servicing {
     }
     
     private func fetch(from url:URL) -> AnyPublisher<NestedCollection<Items<Space>>, ServiceError>{
-        return URLSession.shared.dataTaskPublisher(for: url).tryMap { data, response in
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .tryMap { data, response in
             guard let httpResponse = response as? HTTPURLResponse else {
                 throw ServiceError.unknown
             }
@@ -59,7 +60,9 @@ final class Service: Servicing {
                 return error
             }
             return ServiceError.unknown
-        }).eraseToAnyPublisher()
+        })
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
 }
 
