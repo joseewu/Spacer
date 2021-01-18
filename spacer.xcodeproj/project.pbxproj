@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB980F5F25B4AE290062EBDB /* CollectionCodableStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB980F5E25B4AE290062EBDB /* CollectionCodableStruct.swift */; };
 		EBD28BCA25A22A6E0068FC7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD28BC925A22A6E0068FC7E /* AppDelegate.swift */; };
 		EBD28BCC25A22A6E0068FC7E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD28BCB25A22A6E0068FC7E /* SceneDelegate.swift */; };
 		EBD28BCE25A22A6E0068FC7E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD28BCD25A22A6E0068FC7E /* ContentView.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EB980F5E25B4AE290062EBDB /* CollectionCodableStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCodableStruct.swift; sourceTree = "<group>"; };
 		EBD28BC625A22A6E0068FC7E /* spacer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spacer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBD28BC925A22A6E0068FC7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBD28BCB25A22A6E0068FC7E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				EBD28BCB25A22A6E0068FC7E /* SceneDelegate.swift */,
 				EBD28BCD25A22A6E0068FC7E /* ContentView.swift */,
 				EBD28BFC25A22AFA0068FC7E /* Service.swift */,
+				EB980F5E25B4AE290062EBDB /* CollectionCodableStruct.swift */,
 				EBD28BCF25A22A700068FC7E /* Assets.xcassets */,
 				EBD28BD425A22A700068FC7E /* LaunchScreen.storyboard */,
 				EBD28BD725A22A700068FC7E /* Info.plist */,
@@ -271,6 +274,7 @@
 			files = (
 				EBD28BCA25A22A6E0068FC7E /* AppDelegate.swift in Sources */,
 				EBD28BFD25A22AFA0068FC7E /* Service.swift in Sources */,
+				EB980F5F25B4AE290062EBDB /* CollectionCodableStruct.swift in Sources */,
 				EBD28BCC25A22A6E0068FC7E /* SceneDelegate.swift in Sources */,
 				EBD28BCE25A22A6E0068FC7E /* ContentView.swift in Sources */,
 			);

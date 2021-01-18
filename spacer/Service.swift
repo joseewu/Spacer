@@ -2,7 +2,7 @@ import Foundation
 import Combine
 
 protocol Servicing {
-    func fetch() -> AnyPublisher<NestedCollection<Items<Space>>,ServiceError>
+    func fetch() -> AnyPublisher<NestedCollectionAPIModel<SpaceApiModel, SpaceApiModel.NestedCodingKey>, ServiceError>
 }
 
 /*
@@ -23,15 +23,15 @@ final class Service: Servicing {
         components.queryItems = [URLQueryItem(name: "q", value: "apollo 19"),URLQueryItem(name: "description", value: "moon landing"),URLQueryItem(name: "media_type", value: "image")]
         return components
     }
-    func fetch() -> AnyPublisher<NestedCollection<Items<Space>>, ServiceError> {
+    func fetch() -> AnyPublisher<NestedCollectionAPIModel<SpaceApiModel, SpaceApiModel.NestedCodingKey>, ServiceError> {
         
         guard let url = urlComponents.url else {
-            return Future<NestedCollection<Items<Space>>, ServiceError> { $0(.failure(.unknown)) }.eraseToAnyPublisher()
+            return Future<NestedCollectionAPIModel<SpaceApiModel, SpaceApiModel.NestedCodingKey>, ServiceError> { $0(.failure(.unknown)) }.eraseToAnyPublisher()
         }
         return fetch(from: url)
     }
     
-    private func fetch(from url:URL) -> AnyPublisher<NestedCollection<Items<Space>>, ServiceError>{
+    private func fetch(from url:URL) -> AnyPublisher<NestedCollectionAPIModel<SpaceApiModel, SpaceApiModel.NestedCodingKey>, ServiceError>{
         return URLSession.shared.dataTaskPublisher(for: url)
             .tryMap { data, response in
             guard let httpResponse = response as? HTTPURLResponse else {
@@ -54,7 +54,7 @@ final class Service: Servicing {
             }
             return data
         }
-        .decode(type: NestedCollection<Items<Space>>.self, decoder: JSONDecoder())
+        .decode(type: NestedCollectionAPIModel<SpaceApiModel, SpaceApiModel.NestedCodingKey>.self, decoder: JSONDecoder())
         .mapError({ error -> ServiceError in
             if let error = error as? ServiceError {
                 return error
@@ -83,11 +83,29 @@ struct Items<T:Decodable>:Decodable {
     }
 }
 
-struct Space:Decodable {
+struct Space {
     let id:String
     let title:String
     let description:String
     let imageUrlString:String
+}
+
+struct SpaceApiModel: Codable,Equatable {
+    let createDate:Date
+    let title:String
+    let id:String
+    
+    public enum CodingKeys: String, CodingKey {
+        case id = "nasa_id"
+        case createDate = "date_created"
+        case title
+    }
+    
+    public enum NestedCodingKey: String, CodingKey, CaseIterable {
+        case data
+    }
+    
+    
 }
 
 
